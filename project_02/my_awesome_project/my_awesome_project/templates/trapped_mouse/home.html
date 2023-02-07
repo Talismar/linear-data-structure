@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css_app %}
+  <link rel="stylesheet" href="{% static 'css/trapped_mouse/style.css' %}">
+{% endblock css_app %}
+
+{% block content %}
+
+  {% if has_maze %}
+
+    <h3>Stack</h3>
+    <hr>
+
+    <div class="container-stack">
+
+
+      {% for s in history_stack %}
+
+        <div class="children-stack">
+
+          <div>
+            {% for item in s.0 %}
+
+              <p>{{ item }}</p>
+
+            {% endfor %}
+          </div>
+
+
+          <p class="current-cell">{{ s.1 }}</p>
+
+        </div>
+
+      {% endfor %}
+
+
+    </div>
+
+    <hr>
+    <h3>Maze</h3>
+    <hr>
+
+    <div class="container-maze">
+
+
+      {% for maze in history_maze %}
+
+      <div class="maze" style="grid-template-columns: repeat({{ line_size }}, 1.5rem); grid-template-rows: repeat({{ column_size }}, 1.5rem);">
+
+          {% for row in maze %}
+
+            {% for column in row %}
+              {% if column == 1 %}
+                <div class="wall"> </div>
+
+                {% elif column == 0 %}
+                  <div class="path"> </div>
+                {% elif column == 'm' %}
+                  <div class="mouse"> </div>
+                {% else %}
+                  <p>{{column}}</p>
+
+              {% endif %}
+            {% endfor %}
+
+          {% endfor %}
+
+      </div>
+        {% endfor %}
+
+
+    </div>
+
+    <hr>
+
+  {% endif %}
+
+  <h3>New maze</h3>
+
+  <form  method="get" style="padding-bottom: 1.5rem;">
+    {% csrf_token %}
+
+    <div class="mb-3">
+      <label for="row" class="form-label">Número de linhas</label>
+      <input type="number" name="row" class="form-control" id="row" aria-describedby="rowHelp">
+      <div id="rowHelp" class="form-text">Digite um número maior do que 1</div>
+    </div>
+
+    <div class="mb-3">
+      <label for="column" class="form-label">Número de colunas</label>
+      <input type="number" name="column" class="form-control" id="row" aria-describedby="columnHelp">
+      <div id="columnHelp" class="form-text">Digite um número maior do que 1</div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+
+{% endblock content %}

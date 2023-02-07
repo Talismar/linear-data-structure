@@ -1,0 +1,54 @@
+.container-stack {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.children-stack div {
+  border: 2px solid #000;
+  border-top: none;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.children-stack {
+  display: flex;
+  flex-direction: column;
+}
+
+.children-stack p {
+  padding: 0 0.5rem;
+  margin: 0;
+}
+
+.maze {
+  display: grid;
+  justify-items: center;
+}
+
+.container-maze {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-bottom: 1.5rem;
+}
+
+.wall {
+  width: 100%;
+  height: 100%;
+  background-color: rgb(84, 77, 77);
+}
+
+.feedback {
+  color: rgb(118, 195, 1);
+}
+
+.mouse {
+  width: 70%;
+  height: 70%;
+  align-self: center;
+  background-color: rgb(255, 0, 0);
+  border-radius: 50%;
+}
